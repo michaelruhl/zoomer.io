@@ -15,6 +15,9 @@ export class CollisionAnimation {
     this.fps = Math.random() * 10 + 5
     this.frameInterval = 1000/this.fps;
     this.frameTimer = 0
+    this.collisionSound = new Audio()
+      this.collisionSound.src = "./assets/pop.ogg"
+    
   }
   draw(context){
     context.drawImage(this.image, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height)

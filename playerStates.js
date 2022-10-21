@@ -68,6 +68,7 @@ export class Jumping extends State {
     super("JUMPING", game);
   }
   enter() {
+    this.game.jumpSound.play()
     if (this.game.player.onGround()) this.game.player.vy -= 27;
     this.game.player.frameX = 0;
     this.game.player.maxFrame = 6;
@@ -128,6 +129,7 @@ export class Rolling extends State {
       input.includes("ArrowUp") &&
       this.game.player.onGround()
     ) {
+      this.game.jumpSound.play()
       this.game.player.vy -= 27;
     }else if (input.includes("ArrowDown") && !this.game.player.onGround()) {
         this.game.player.setState(states.DIVING, 0);

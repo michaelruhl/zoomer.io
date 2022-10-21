@@ -12,7 +12,7 @@ window.addEventListener("load", function () {
   const ctx = canvas.getContext("2d");
   canvas.width = 900;
   canvas.height = 500;
-
+  
   class Game {
     constructor(width, height) {
       this.width = width;
@@ -31,13 +31,22 @@ window.addEventListener("load", function () {
       this.enemyInterval = 1000;
       this.debug = false;
       this.score = 0;
-      this.winningScore = 45
+      this.winningScore = 80
       this.fontColor = "black";
       this.time = 0
       this.maxTime = 30000
       this.gameOver = false
       this.player.currentState = this.player.states[0];
       this.player.currentState.enter();
+      this.collisionSound = new Audio()
+      this.collisionSound.src = "./assets/pop.ogg"
+      this.jumpSound = new Audio()
+      this.jumpSound.src = "./assets/sfx_jump.flac"
+      this.bgSound = new Audio()
+      this.bgSound.src = "./assets/plimplom.wav"
+      
+      
+      
     }
     update(deltaTime) {
         this.time += deltaTime
@@ -72,6 +81,9 @@ window.addEventListener("load", function () {
     draw(context) {
       this.background.draw(context);
       this.player.draw(context);
+      
+      
+      this.bgSound.play()
       this.enemies.forEach((enemy) => {
         enemy.draw(context);
       });
@@ -80,7 +92,9 @@ window.addEventListener("load", function () {
         // console.log(particle)
       });
       this.collisions.forEach((collision) => {
+        collision.collisionSound.play()
         collision.draw(context);
+                
         // console.log(context)
       });
       this.UI.draw(context);
@@ -90,6 +104,8 @@ window.addEventListener("load", function () {
         this.enemies.push(new GroundEnemy(this));
       else if (this.speed > 0) this.enemies.push(new ClimbingEnemy(this));
 
+      this.enemies.push(new FlyingEnemy(this));
+      this.enemies.push(new FlyingEnemy(this));
       this.enemies.push(new FlyingEnemy(this));
     }
   }
@@ -103,21 +119,24 @@ window.addEventListener("load", function () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game.update(deltaTime);
     game.draw(ctx);
-    if (!game.gameOver){
-      requestAnimationFrame(animate);
-    } else {
-      window.addEventListener('keydown', e => {
-        if ((  
-                e.key === 'Enter'
-         ) ){
-            location.reload()
-        } 
-    });
-    }
+    
+   
+   
+    if (!game.gameOver)requestAnimationFrame(animate);
+
+   
+    
     
   }
   animate(0);
-
+  
+  window.addEventListener('keydown', e => {
+    if ((  
+            e.key === 'Enter'
+     ) ){
+        location.reload()
+    } 
+});
   
 
 });

@@ -1,8 +1,9 @@
 export class UI {
   constructor(game) {
     this.game = game;
-    this.fontSize = 30;
+    this.fontSize = 44;
     this.fontFamily = "Arial";
+    this.fontWeight = 900
   }
   draw(context) {
     context.font = this.fontSize + "px " + this.fontFamily;
@@ -11,7 +12,7 @@ export class UI {
     // score
     context.fillText("Score: " + this.game.score, 20, 50);
     context.font = this.fontSize * 0.8 + "px " + this.fontFamily;
-    context.fillText("Time: " + (this.game.time * 0.001).toFixed(1), 20, 80);
+    context.fillText("Time: " + (this.game.time * 0.001).toFixed(1), 20, 90);
     // game over messages
     if (this.game.gameOver) {
       context.textAlign = "center";
@@ -25,14 +26,14 @@ export class UI {
         );
         context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
         context.fillText(
-          "LETS GOOOOOO!!!! Great job gamer!",
+          "Great job gamer!",
           this.game.width * 0.5,
           this.game.height * 0.5 - 70
           );
           context.fillText(
             "Press Enter to play again!",
             this.game.width * 0.5,
-            this.game.height * 0.5 - 50
+            this.game.height * 0.5 - 45
             );
           
       } else {
@@ -50,7 +51,7 @@ export class UI {
         context.fillText(
           "Press Enter to try again!",
           this.game.width * 0.5,
-          this.game.height * 0.5 - 50
+          this.game.height * 0.5 - 45
           );
          
       }
