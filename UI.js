@@ -21,18 +21,18 @@ export class UI {
         context.fillText(
           "You Win!!",
           this.game.width * 0.5,
-          this.game.height * 0.5 - 20
+          this.game.height * 0.5 - 100
         );
         context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
         context.fillText(
           "LETS GOOOOOO!!!! Great job gamer!",
           this.game.width * 0.5,
-          this.game.height * 0.5 + 20
+          this.game.height * 0.5 - 70
           );
           context.fillText(
             "Press Enter to play again!",
             this.game.width * 0.5,
-            this.game.height * 0.5 + 40
+            this.game.height * 0.5 - 50
             );
           
       } else {
